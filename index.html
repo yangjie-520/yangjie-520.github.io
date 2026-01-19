@@ -1,0 +1,1079 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新视界科技有限公司</title>
+    <style>
+        /* 全局样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        h1, h2, h3, h4 {
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #0056b3;
+        }
+
+        p {
+            margin-bottom: 15px;
+            color: #666;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* 导航栏 */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 15px 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #0056b3;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 5px 0;
+        }
+
+        .nav-links a:hover {
+            color: #0056b3;
+            background: linear-gradient(to right, #0056b3, #00a8e8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(to right, #0056b3, #00a8e8);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* 首屏 */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, #0056b3 0%, #00a8e8 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: white;
+            color: #0056b3;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        /* 关于我们 */
+        .about {
+            background: #ffffff;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            color: #0056b3;
+        }
+
+        .about-image {
+            background: #f4f7f6;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+        }
+
+        .about-image::before {
+            content: "公司图片";
+            color: #00a8e8;
+            font-size: 18px;
+        }
+
+        /* 核心服务 */
+        .home-section,
+        .fusion-section,
+        .agent-platform-section,
+        .agent-app-section,
+        .contact-section {
+            background: #ffffff;
+            padding: 80px 0;
+        }
+
+        .sub-sections-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .sub-section-card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            cursor: pointer;
+        }
+
+        .sub-section-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .sub-section-card h3 {
+            color: #0056b3;
+            margin-bottom: 15px;
+        }
+        
+        .detail-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1004;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .detail-content {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 800px;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+        }
+        
+        .close-detail {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 24px;
+            cursor: pointer;
+            color: #999;
+        }
+        
+        .detail-content h3 {
+            color: #0056b3;
+            margin-top: 0;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            color: #0056b3;
+            margin-bottom: 20px;
+        }
+
+        .service-card h3 {
+            color: #0056b3;
+        }
+
+        /* 页脚 */
+        footer {
+            background: #0056b3;
+            color: white;
+            padding: 40px 0;
+        }
+
+        .footer-content {
+            text-align: center;
+        }
+
+        .footer-content p {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 10px;
+        }
+
+        /* 后台管理按钮 */
+        .admin-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: #0056b3;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 1001;
+            box-shadow: 0 5px 15px rgba(0, 86, 179, 0.4);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .admin-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(0, 86, 179, 0.6);
+        }
+
+        /* 登录模态框 */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1002;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            width: 400px;
+            max-width: 90%;
+            text-align: center;
+        }
+
+        .modal input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .modal button {
+            padding: 12px 25px;
+            background: #0056b3;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        /* 管理面板 */
+        .admin-panel {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 400px;
+            height: 100vh;
+            background: white;
+            box-shadow: -5px 0 25px rgba(0, 0, 0, 0.1);
+            z-index: 1003;
+            transition: right 0.3s ease;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .admin-panel.active {
+            right: 0;
+        }
+
+        .panel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .close-panel {
+            background: #ff4757;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+        }
+
+        .panel-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: #0056b3;
+        }
+
+        .form-group textarea,
+        .form-group input[type="text"] {
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        .form-group textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .save-btn {
+            background: #2ed573;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+
+        /* 移动端适配 */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .admin-panel {
+                width: 100%;
+                right: -100%;
+            }
+
+            .modal-content {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">新视界科技</div>
+            <div class="nav-links">
+                <a href="#home">首页</a>
+                <a href="#fusion">产教融合</a>
+                <a href="#agent-platform">Agent教学平台</a>
+                <a href="#agent-app">Agent应用平台</a>
+                <a href="#contact">联系我们</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 首页内容 -->
+    <section id="home" class="home-section">
+        <div class="container">
+            <h2>首页</h2>
+            <div class="sub-sections-grid">
+                <div class="sub-section-card">
+                    <h3 id="about-us-title">关于我们</h3>
+                    <p id="about-us-desc">新视界科技有限公司成立于2024年9月，是一家专注于"AI+智能体+职业教育"领域的创新企业，公司的定位是为中小企业提供人工智能解决方案，致力于打造"AI商业人才生态系统"。</p>
+                </div>
+                <div class="sub-section-card">
+                    <h3 id="policy-documents-title">政策文件</h3>
+                    <p id="policy-documents-desc">相关政策法规和行业标准文档，为行业发展提供指导和支持。</p>
+                </div>
+                <div class="sub-section-card">
+                    <h3 id="frontier-news-title">前沿资讯</h3>
+                    <p id="frontier-news-desc">最新的人工智能和职业教育领域资讯，帮助了解行业发展趋势。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 产教融合 -->
+    <section id="fusion" class="fusion-section">
+        <div class="container">
+            <h2>产教融合</h2>
+            <div class="sub-sections-grid">
+                <div class="sub-section-card">
+                    <h3 id="expert-advisors-title">专家顾问</h3>
+                    <p id="expert-advisors-desc">汇聚行业顶尖专家，为人才培养和技术创新提供专业指导。</p>
+                </div>
+                <div class="sub-section-card">
+                    <h3 id="student-showcase-title">学员风采</h3>
+                    <p id="student-showcase-desc">展示优秀学员的学习成果和职业发展案例，激励更多人才成长。</p>
+                </div>
+                <div class="sub-section-card">
+                    <h3 id="job-postings-title">企业岗位发布</h3>
+                    <p id="job-postings-desc">为企业提供专业人才招聘服务，搭建人才供需对接桥梁。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Agent教学平台 -->
+    <section id="agent-platform" class="agent-platform-section">
+        <div class="container">
+            <h2>Agent教学平台</h2>
+            <div class="sub-sections-grid">
+                <div class="sub-section-card">
+                    <h3 id="courses-title">课程</h3>
+                    <p id="courses-desc">精心设计的课程体系，涵盖AI基础知识到高级应用，满足不同层次学习需求。</p>
+                </div>
+                <div class="sub-section-card">
+                    <h3 id="online-bootcamp-title">线上训练营</h3>
+                    <p id="online-bootcamp-desc">实战导向的在线训练营，提供专业导师指导和真实项目经验。</p>
+                </div>
+                <div class="sub-section-card">
+                    <h3 id="knowledge-base-title">知识库</h3>
+                    <p id="knowledge-base-desc">全面的知识资源库，包含教程、案例、最佳实践等丰富学习材料。</p>
+                </div>
+                <div class="sub-section-card">
+                    <h3 id="competition-learning-title">以赛促学</h3>
+                    <p id="competition-learning-desc">通过竞赛激发学习热情，提升实际操作能力和创新思维。</p>
+                </div>
+                <div class="sub-section-card">
+                    <h3 id="project-training-title">项目实训</h3>
+                    <p id="project-training-desc">真实项目驱动的实训课程，让学生在实践中掌握技能，积累经验。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Agent应用平台 -->
+    <section id="agent-app" class="agent-app-section">
+        <div class="container">
+            <h2>Agent应用平台</h2>
+            <div class="sub-sections-grid">
+                <div class="sub-section-card">
+                    <h3 id="free-tools-title">免费工具集</h3>
+                    <p id="free-tools-desc">提供一系列免费的AI工具，帮助企业快速入门和试用人工智能技术。</p>
+                </div>
+                <div class="sub-section-card">
+                    <h3 id="paid-tools-title">付费工具集</h3>
+                    <p id="paid-tools-desc">功能更强大的专业工具集，满足企业级应用场景的深度需求。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 联系我们 -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <h2>联系我们</h2>
+            <div class="sub-sections-grid">
+                <div class="sub-section-card">
+                    <h3 id="operations-title">运营部</h3>
+                    <p id="operations-desc">负责日常运营事务，协调内外部资源，确保业务顺畅运行。</p>
+                </div>
+                <div class="sub-section-card">
+                    <h3 id="strategic-partners-title">战略合作伙伴</h3>
+                    <p id="strategic-partners-desc">与行业领先企业建立战略合作关系，共同推进AI技术应用和发展。</p>
+                </div>
+                <div class="sub-section-card">
+                    <h3 id="ecosystem-partners-title">生态合作伙伴</h3>
+                    <p id="ecosystem-partners-desc">携手产业链上下游伙伴，构建开放共赢的AI生态体系。</p>
+                </div>
+            </div>
+            <div class="contact-info">
+                <p><strong>地址：</strong><span id="address">湖南湘江新区世界计算・长沙智谷</span></p>
+                <p><strong>邮箱：</strong><span id="email">custom@csnewvision.com</span></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 详情模态框 -->
+    <div class="detail-modal" id="detail-modal">
+        <div class="detail-content">
+            <span class="close-detail" onclick="closeDetail()">&times;</span>
+            <h3 id="detail-title"></h3>
+            <p id="detail-description"></p>
+            <div id="detail-content-extra"></div>
+        </div>
+    </div>
+    
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <p id="company-name">新视界科技有限公司</p>
+                <p id="copyright">© 2024 新视界科技有限公司 版权所有</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 后台管理按钮 -->
+    <button class="admin-btn" id="admin-btn">⚙️</button>
+
+    <!-- 登录模态框 -->
+    <div class="modal" id="login-modal">
+        <div class="modal-content">
+            <h2>管理员登录</h2>
+            <input type="password" id="admin-password" placeholder="请输入密码">
+            <button onclick="login()">登录</button>
+        </div>
+    </div>
+
+    <!-- 管理面板 -->
+    <div class="admin-panel" id="admin-panel">
+        <div class="panel-header">
+            <h3>内容管理系统</h3>
+            <button class="close-panel" onclick="closePanel()">&times;</button>
+        </div>
+        <form class="panel-form" id="data-form">
+            <h4>通用信息</h4>
+            <div class="form-group">
+                <label for="logo-input">Logo文字</label>
+                <input type="text" id="logo-input" name="logo">
+            </div>
+            <div class="form-group">
+                <label for="company-name-input">公司名称</label>
+                <input type="text" id="company-name-input" name="companyName">
+            </div>
+            <div class="form-group">
+                <label for="address-input">联系地址</label>
+                <input type="text" id="address-input" name="address">
+            </div>
+            <div class="form-group">
+                <label for="email-input">联系邮箱</label>
+                <input type="text" id="email-input" name="email">
+            </div>
+            <div class="form-group">
+                <label for="copyright-input">版权信息</label>
+                <input type="text" id="copyright-input" name="copyright">
+            </div>
+            
+            <h4>首页内容</h4>
+            <div class="form-group">
+                <label for="about-us-title-input">关于我们标题</label>
+                <input type="text" id="about-us-title-input" name="aboutUsTitle">
+            </div>
+            <div class="form-group">
+                <label for="about-us-desc-input">关于我们描述</label>
+                <textarea id="about-us-desc-input" name="aboutUsDesc"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="policy-documents-title-input">政策文件标题</label>
+                <input type="text" id="policy-documents-title-input" name="policyDocumentsTitle">
+            </div>
+            <div class="form-group">
+                <label for="policy-documents-desc-input">政策文件描述</label>
+                <textarea id="policy-documents-desc-input" name="policyDocumentsDesc"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="frontier-news-title-input">前沿资讯标题</label>
+                <input type="text" id="frontier-news-title-input" name="frontierNewsTitle">
+            </div>
+            <div class="form-group">
+                <label for="frontier-news-desc-input">前沿资讯描述</label>
+                <textarea id="frontier-news-desc-input" name="frontierNewsDesc"></textarea>
+            </div>
+            
+            <h4>产教融合内容</h4>
+            <div class="form-group">
+                <label for="expert-advisors-title-input">专家顾问标题</label>
+                <input type="text" id="expert-advisors-title-input" name="expertAdvisorsTitle">
+            </div>
+            <div class="form-group">
+                <label for="expert-advisors-desc-input">专家顾问描述</label>
+                <textarea id="expert-advisors-desc-input" name="expertAdvisorsDesc"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="student-showcase-title-input">学员风采标题</label>
+                <input type="text" id="student-showcase-title-input" name="studentShowcaseTitle">
+            </div>
+            <div class="form-group">
+                <label for="student-showcase-desc-input">学员风采描述</label>
+                <textarea id="student-showcase-desc-input" name="studentShowcaseDesc"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="job-postings-title-input">企业岗位发布标题</label>
+                <input type="text" id="job-postings-title-input" name="jobPostingsTitle">
+            </div>
+            <div class="form-group">
+                <label for="job-postings-desc-input">企业岗位发布描述</label>
+                <textarea id="job-postings-desc-input" name="jobPostingsDesc"></textarea>
+            </div>
+            
+            <h4>Agent教学平台内容</h4>
+            <div class="form-group">
+                <label for="courses-title-input">课程标题</label>
+                <input type="text" id="courses-title-input" name="coursesTitle">
+            </div>
+            <div class="form-group">
+                <label for="courses-desc-input">课程描述</label>
+                <textarea id="courses-desc-input" name="coursesDesc"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="online-bootcamp-title-input">线上训练营标题</label>
+                <input type="text" id="online-bootcamp-title-input" name="onlineBootcampTitle">
+            </div>
+            <div class="form-group">
+                <label for="online-bootcamp-desc-input">线上训练营描述</label>
+                <textarea id="online-bootcamp-desc-input" name="onlineBootcampDesc"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="knowledge-base-title-input">知识库标题</label>
+                <input type="text" id="knowledge-base-title-input" name="knowledgeBaseTitle">
+            </div>
+            <div class="form-group">
+                <label for="knowledge-base-desc-input">知识库描述</label>
+                <textarea id="knowledge-base-desc-input" name="knowledgeBaseDesc"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="competition-learning-title-input">以赛促学标题</label>
+                <input type="text" id="competition-learning-title-input" name="competitionLearningTitle">
+            </div>
+            <div class="form-group">
+                <label for="competition-learning-desc-input">以赛促学描述</label>
+                <textarea id="competition-learning-desc-input" name="competitionLearningDesc"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="project-training-title-input">项目实训标题</label>
+                <input type="text" id="project-training-title-input" name="projectTrainingTitle">
+            </div>
+            <div class="form-group">
+                <label for="project-training-desc-input">项目实训描述</label>
+                <textarea id="project-training-desc-input" name="projectTrainingDesc"></textarea>
+            </div>
+            
+            <h4>Agent应用平台内容</h4>
+            <div class="form-group">
+                <label for="free-tools-title-input">免费工具集标题</label>
+                <input type="text" id="free-tools-title-input" name="freeToolsTitle">
+            </div>
+            <div class="form-group">
+                <label for="free-tools-desc-input">免费工具集描述</label>
+                <textarea id="free-tools-desc-input" name="freeToolsDesc"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="paid-tools-title-input">付费工具集标题</label>
+                <input type="text" id="paid-tools-title-input" name="paidToolsTitle">
+            </div>
+            <div class="form-group">
+                <label for="paid-tools-desc-input">付费工具集描述</label>
+                <textarea id="paid-tools-desc-input" name="paidToolsDesc"></textarea>
+            </div>
+            
+            <h4>联系我们内容</h4>
+            <div class="form-group">
+                <label for="operations-title-input">运营部标题</label>
+                <input type="text" id="operations-title-input" name="operationsTitle">
+            </div>
+            <div class="form-group">
+                <label for="operations-desc-input">运营部描述</label>
+                <textarea id="operations-desc-input" name="operationsDesc"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="strategic-partners-title-input">战略合作伙伴标题</label>
+                <input type="text" id="strategic-partners-title-input" name="strategicPartnersTitle">
+            </div>
+            <div class="form-group">
+                <label for="strategic-partners-desc-input">战略合作伙伴描述</label>
+                <textarea id="strategic-partners-desc-input" name="strategicPartnersDesc"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="ecosystem-partners-title-input">生态合作伙伴标题</label>
+                <input type="text" id="ecosystem-partners-title-input" name="ecosystemPartnersTitle">
+            </div>
+            <div class="form-group">
+                <label for="ecosystem-partners-desc-input">生态合作伙伴描述</label>
+                <textarea id="ecosystem-partners-desc-input" name="ecosystemPartnersDesc"></textarea>
+            </div>
+            
+            <button type="button" class="save-btn" onclick="saveData()">保存更改</button>
+        </form>
+    </div>
+
+    <script>
+        // 默认数据结构
+        const defaultData = {
+            logo: "新视界科技",
+            companyName: "新视界科技有限公司",
+            copyright: "© 2024 新视界科技有限公司 版权所有",
+            address: "湖南湘江新区世界计算・长沙智谷",
+            email: "custom@csnewvision.com",
+            
+            // 首页内容
+            aboutUsTitle: "关于我们",
+            aboutUsDesc: "新视界科技有限公司成立于2024年9月，是一家专注于\"AI+智能体+职业教育\"领域的创新企业，公司的定位是为中小企业提供人工智能解决方案，致力于打造\"AI商业人才生态系统\"。",
+            policyDocumentsTitle: "政策文件",
+            policyDocumentsDesc: "相关政策法规和行业标准文档，为行业发展提供指导和支持。",
+            frontierNewsTitle: "前沿资讯",
+            frontierNewsDesc: "最新的人工智能和职业教育领域资讯，帮助了解行业发展趋势。",
+            
+            // 产教融合内容
+            expertAdvisorsTitle: "专家顾问",
+            expertAdvisorsDesc: "汇聚行业顶尖专家，为人才培养和技术创新提供专业指导。",
+            studentShowcaseTitle: "学员风采",
+            studentShowcaseDesc: "展示优秀学员的学习成果和职业发展案例，激励更多人才成长。",
+            jobPostingsTitle: "企业岗位发布",
+            jobPostingsDesc: "为企业提供专业人才招聘服务，搭建人才供需对接桥梁。",
+            
+            // Agent教学平台内容
+            coursesTitle: "课程",
+            coursesDesc: "精心设计的课程体系，涵盖AI基础知识到高级应用，满足不同层次学习需求。",
+            onlineBootcampTitle: "线上训练营",
+            onlineBootcampDesc: "实战导向的在线训练营，提供专业导师指导和真实项目经验。",
+            knowledgeBaseTitle: "知识库",
+            knowledgeBaseDesc: "全面的知识资源库，包含教程、案例、最佳实践等丰富学习材料。",
+            competitionLearningTitle: "以赛促学",
+            competitionLearningDesc: "通过竞赛激发学习热情，提升实际操作能力和创新思维。",
+            projectTrainingTitle: "项目实训",
+            projectTrainingDesc: "真实项目驱动的实训课程，让学生在实践中掌握技能，积累经验。",
+            
+            // Agent应用平台内容
+            freeToolsTitle: "免费工具集",
+            freeToolsDesc: "提供一系列免费的AI工具，帮助企业快速入门和试用人工智能技术。",
+            paidToolsTitle: "付费工具集",
+            paidToolsDesc: "功能更强大的专业工具集，满足企业级应用场景的深度需求。",
+            
+            // 联系我们内容
+            operationsTitle: "运营部",
+            operationsDesc: "负责日常运营事务，协调内外部资源，确保业务顺畅运行。",
+            strategicPartnersTitle: "战略合作伙伴",
+            strategicPartnersDesc: "与行业领先企业建立战略合作关系，共同推进AI技术应用和发展。",
+            ecosystemPartnersTitle: "生态合作伙伴",
+            ecosystemPartnersDesc: "携手产业链上下游伙伴，构建开放共赢的AI生态体系。"
+        };
+
+        // 页面元素映射
+        const elementMap = {
+            'logo': '.logo',
+            'companyName': '#company-name',
+            'copyright': '#copyright',
+            'address': '#address',
+            'email': '#email',
+            
+            // 首页内容
+            'aboutUsTitle': '#about-us-title',
+            'aboutUsDesc': '#about-us-desc',
+            'policyDocumentsTitle': '#policy-documents-title',
+            'policyDocumentsDesc': '#policy-documents-desc',
+            'frontierNewsTitle': '#frontier-news-title',
+            'frontierNewsDesc': '#frontier-news-desc',
+            
+            // 产教融合内容
+            'expertAdvisorsTitle': '#expert-advisors-title',
+            'expertAdvisorsDesc': '#expert-advisors-desc',
+            'studentShowcaseTitle': '#student-showcase-title',
+            'studentShowcaseDesc': '#student-showcase-desc',
+            'jobPostingsTitle': '#job-postings-title',
+            'jobPostingsDesc': '#job-postings-desc',
+            
+            // Agent教学平台内容
+            'coursesTitle': '#courses-title',
+            'coursesDesc': '#courses-desc',
+            'onlineBootcampTitle': '#online-bootcamp-title',
+            'onlineBootcampDesc': '#online-bootcamp-desc',
+            'knowledgeBaseTitle': '#knowledge-base-title',
+            'knowledgeBaseDesc': '#knowledge-base-desc',
+            'competitionLearningTitle': '#competition-learning-title',
+            'competitionLearningDesc': '#competition-learning-desc',
+            'projectTrainingTitle': '#project-training-title',
+            'projectTrainingDesc': '#project-training-desc',
+            
+            // Agent应用平台内容
+            'freeToolsTitle': '#free-tools-title',
+            'freeToolsDesc': '#free-tools-desc',
+            'paidToolsTitle': '#paid-tools-title',
+            'paidToolsDesc': '#paid-tools-desc',
+            
+            // 联系我们内容
+            'operationsTitle': '#operations-title',
+            'operationsDesc': '#operations-desc',
+            'strategicPartnersTitle': '#strategic-partners-title',
+            'strategicPartnersDesc': '#strategic-partners-desc',
+            'ecosystemPartnersTitle': '#ecosystem-partners-title',
+            'ecosystemPartnersDesc': '#ecosystem-partners-desc'
+        };
+
+        // 初始化页面
+        function initPage() {
+            loadData();
+            setupEventListeners();
+        }
+
+        // 加载数据
+        function loadData() {
+            let savedData = localStorage.getItem('companyData');
+            if (savedData) {
+                try {
+                    savedData = JSON.parse(savedData);
+                } catch (e) {
+                    savedData = defaultData;
+                }
+            } else {
+                savedData = defaultData;
+            }
+
+            // 更新页面内容
+            Object.keys(elementMap).forEach(key => {
+                if (savedData[key]) {
+                    const selector = elementMap[key];
+                    if (selector.startsWith('#')) {
+                        const element = document.querySelector(selector);
+                        if (element) {
+                            if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                                element.value = savedData[key];
+                            } else {
+                                element.textContent = savedData[key];
+                            }
+                        }
+                    } else if (selector.startsWith('.')) {
+                        const element = document.querySelector(selector);
+                        if (element) {
+                            element.textContent = savedData[key];
+                        }
+                    }
+                }
+            });
+
+            // 同时更新表单输入框
+            Object.keys(defaultData).forEach(key => {
+                const inputElement = document.getElementById(`${key}-input`);
+                if (inputElement) {
+                    inputElement.value = savedData[key] || defaultData[key];
+                }
+            });
+        }
+
+        // 保存数据
+        function saveData() {
+            const formData = new FormData(document.getElementById('data-form'));
+            const data = {};
+            
+            for (let [key, value] of formData.entries()) {
+                data[key] = value;
+            }
+            
+            localStorage.setItem('companyData', JSON.stringify(data));
+            alert('数据已保存！');
+            
+            // 更新页面内容
+            updatePageContent(data);
+        }
+
+        // 更新页面内容
+        function updatePageContent(data) {
+            Object.keys(elementMap).forEach(key => {
+                if (data[key]) {
+                    const selector = elementMap[key];
+                    if (selector.startsWith('#')) {
+                        const element = document.querySelector(selector);
+                        if (element) {
+                            if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                                element.value = data[key];
+                            } else {
+                                element.textContent = data[key];
+                            }
+                        }
+                    } else if (selector.startsWith('.')) {
+                        const element = document.querySelector(selector);
+                        if (element) {
+                            element.textContent = data[key];
+                        }
+                    }
+                }
+            });
+        }
+
+        // 登录函数
+        function login() {
+            const password = document.getElementById('admin-password').value;
+            if (password === 'admin') {
+                document.getElementById('login-modal').style.display = 'none';
+                document.getElementById('admin-panel').classList.add('active');
+                document.getElementById('admin-password').value = '';
+            } else {
+                alert('密码错误！');
+            }
+        }
+
+        // 关闭面板
+        function closePanel() {
+            document.getElementById('admin-panel').classList.remove('active');
+        }
+
+        // 设置事件监听器
+        function setupEventListeners() {
+            // 后台管理按钮点击事件
+            document.getElementById('admin-btn').addEventListener('click', () => {
+                document.getElementById('login-modal').style.display = 'flex';
+            });
+
+            // 点击模态框外部关闭
+            document.getElementById('login-modal').addEventListener('click', (e) => {
+                if (e.target.id === 'login-modal') {
+                    document.getElementById('login-modal').style.display = 'none';
+                }
+            });
+
+            // 键盘事件 - 回车键登录
+            document.getElementById('admin-password').addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    login();
+                }
+            });
+
+            // 平滑滚动到锚点
+            document.querySelectorAll('nav a').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetSection = document.querySelector(targetId);
+                    if (targetSection) {
+                        window.scrollTo({
+                            top: targetSection.offsetTop - 70,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // 为所有卡片添加点击事件
+            document.querySelectorAll('.sub-section-card').forEach(card => {
+                card.addEventListener('click', function() {
+                    const titleElement = this.querySelector('h3');
+                    const descElement = this.querySelector('p');
+                    
+                    if (titleElement && descElement) {
+                        showDetail(titleElement.textContent, descElement.textContent);
+                    }
+                });
+            });
+        }
+
+        // 显示详情模态框
+        function showDetail(title, description) {
+            document.getElementById('detail-title').textContent = title;
+            document.getElementById('detail-description').textContent = description;
+            document.getElementById('detail-modal').style.display = 'flex';
+        }
+        
+        // 关闭详情模态框
+        function closeDetail() {
+            document.getElementById('detail-modal').style.display = 'none';
+        }
+        
+        // 点击详情模态框外部关闭
+        document.getElementById('detail-modal').addEventListener('click', (e) => {
+            if (e.target.id === 'detail-modal') {
+                closeDetail();
+            }
+        });
+        
+        // 页面加载完成后初始化
+        document.addEventListener('DOMContentLoaded', initPage);
+    </script>
+</body>
+</html>
